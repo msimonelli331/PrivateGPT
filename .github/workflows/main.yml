@@ -6,8 +6,8 @@ on:
       - '*'
 
 env:
-  SETUP_BUILDX_VERSION: "latest"
-  SETUP_BUILDKIT_IMAGE: "moby/buildkit:latest"
+  SETUP_BUILDX_VERSION: "v0.16.2"
+  SETUP_BUILDKIT_IMAGE: "moby/buildkit:v0.16.2"
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   PLATFORMS: "linux/amd64"
@@ -53,7 +53,10 @@ jobs:
       -
         name: Build
         run: |
-          buildctl --addr tcp://buildkitd:1234 build --frontend=dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }},push=true
+          wget https://github.com/moby/buildkit/releases/download/${BUILDKIT_VERSION}/buildkit-${BUILDKIT_VERSION}.linux-amd64.tar.gz
+          tar xvf buildkit-${BUILDKIT_VERSION}.linux-amd64.tar.gz -C /usr
+          rm -rf buildkit-${BUILDKIT_VERSION}.linux-amd64.tar.gz
+          buildctl build --frontend=dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }},push=true
       - 
         name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
