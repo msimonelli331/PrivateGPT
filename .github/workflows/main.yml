@@ -6,8 +6,8 @@ on:
       - '*'
 
 env:
-  SETUP_BUILDX_VERSION: "v0.15.2"
-  SETUP_BUILDKIT_IMAGE: "moby/buildkit:v0.15.2"
+  SETUP_BUILDX_VERSION: "latest"
+  SETUP_BUILDKIT_IMAGE: "moby/buildkit:latest"
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   PLATFORMS: "linux/amd64"
