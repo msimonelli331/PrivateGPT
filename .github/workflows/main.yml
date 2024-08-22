@@ -55,9 +55,10 @@ jobs:
         name: Build
         run: |
           wget https://github.com/moby/buildkit/releases/download/${BUILDKIT_VERSION}/buildkit-${BUILDKIT_VERSION}.linux-amd64.tar.gz
-          tar xvf buildkit-${BUILDKIT_VERSION}.linux-amd64.tar.gz -C /usr
+          tar xvf buildkit-${BUILDKIT_VERSION}.linux-amd64.tar.gz
           rm -rf buildkit-${BUILDKIT_VERSION}.linux-amd64.tar.gz
-          buildctl build --frontend=dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }},push=true
+          ls
+          ./buildctl build --frontend=dockerfile.v0 --local context=. --local dockerfile=. --output type=image,name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }},push=true
       - 
         name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
