@@ -1,7 +1,9 @@
 # PrivateGPT
+
 Repo to build local PrivateGPT into a container
 
 ## Resources
+
 - https://github.com/moby/buildkit/blob/master/.github/workflows/buildkit.yml
 - https://docs.github.com/en/actions/use-cases-and-examples/publishing-packages/publishing-docker-images
 - https://docs.github.com/en/packages/quickstart
