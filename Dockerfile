@@ -2,7 +2,7 @@ FROM ubuntu:24.04
 
 RUN apt-get update \
     && apt-get -y install software-properties-common \
-    && add-apt-repository ppa:deadsnakes/ppa \
+    && add-apt-repository 'ppa:deadsnakes/ppa' \
     && apt-get update \
     && apt-get -y install python3.11 make curl git gcc g++ \
     && python3 -m venv .venv \
