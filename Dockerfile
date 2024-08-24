@@ -4,7 +4,7 @@ RUN apt-get update \
     && apt-get -y install software-properties-common \
     && add-apt-repository 'ppa:deadsnakes/ppa' \
     && apt-get update \
-    && apt-get -y install python3.11 make curl git gcc g++ \
+    && apt-get -y install python3.11 python3.11-venv make curl git gcc g++ \
     && python3 -m venv .venv \
     && . .venv/bin/activate \
     && curl -sSL https://install.python-poetry.org | python3 - \
