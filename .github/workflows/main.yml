@@ -74,6 +74,7 @@ jobs:
           du /usr --max-depth=1 --block-size=G
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v6
+        id: push
         with:
           builder: ${{ steps.buildkitd.outputs.name }}
           push: true
