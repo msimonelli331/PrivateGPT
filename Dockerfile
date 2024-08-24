@@ -5,9 +5,10 @@ RUN apt-get update \
     && add-apt-repository 'ppa:deadsnakes/ppa' \
     && apt-get update \
     && apt-get -y install python3.11 python3.11-venv make curl git gcc g++ \
-    && python3 -m venv .venv \
+    && update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1 \
+    && python -m venv .venv \
     && . .venv/bin/activate \
-    && curl -sSL https://install.python-poetry.org | python3 - \
+    && curl -sSL https://install.python-poetry.org | python - \
     && deactivate \
     && git clone https://github.com/zylon-ai/private-gpt
 
@@ -17,3 +18,4 @@ WORKDIR private-gpt
 
 RUN poetry install --extras "ui llms-llama-cpp embeddings-huggingface vector-stores-qdrant" \
     && poetry run python scripts/setup
+    
