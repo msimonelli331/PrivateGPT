@@ -1,7 +1,7 @@
 FROM ubuntu:24.04
 
 RUN apt-get update \
-    && apt-get install software-properties-common \
+    && apt-get -y install software-properties-common \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt-get update \
     && apt-get -y install python3.11 make curl git gcc g++ \
