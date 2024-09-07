@@ -5,14 +5,14 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/msimonelli331/privategpt
+  repository: container.devops/privategpt
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
 env:
-- name: HF_TOKEN
-  value: ""
+  - name: HF_TOKEN
+    value: ""
 
 command:
   - tail
@@ -20,8 +20,7 @@ command:
   - /dev/null
   #- PGPT_PROFILES=local make run
 
-imagePullSecrets:
-- name: regcred-ghcr
+imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
@@ -39,10 +38,12 @@ serviceAccount:
 podAnnotations: {}
 podLabels: {}
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  {}
   # capabilities:
   #   drop:
   #   - ALL
@@ -57,11 +58,12 @@ service:
 ingress:
   enabled: true
   className: ""
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: privategpt.nucleus.priv
+    - host: privategpt.devops
       paths:
         - path: /
           pathType: Prefix
@@ -70,7 +72,8 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following

@@ -1,0 +1,68 @@
+name: Create and publish a artifacts
+
+on:
+  push:
+    branches:
+      - "*"
+
+env:
+  BUILDKIT_VERSION: "v0.15.2"
+  BUILDKIT_DAEMON: buildkitd.devops
+  SETUP_BUILDX_VERSION: "latest"
+  SETUP_BUILDKIT_IMAGE: "moby/buildkit:latest"
+  REGISTRY: container.devops
+  IMAGE_NAME: privategpt
+  PLATFORMS: "linux/amd64"
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    container:
+      image: container.devops/builder:latest
+      credentials:
+        username: ${{ secrets.NEXUS_USERNAME }}
+        password: ${{ secrets.NEXUS_PASSWORD }}
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build container
+        run: |
+          buildctl --addr tcp://${{ env.BUILDKIT_DAEMON }}:1234 build \
+            --frontend=dockerfile.v0 \
+            --local context=. \
+            --local dockerfile=. \
+            --output registry.insecure=true,type=image,name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,push=true
+
+  package-and-push-helm:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITEA_ACTOR"
+          git config user.email "$GITEA_ACTOR@users.noreply.gitea.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        env:
+          GITEA_TOKEN: "${{ secrets.GITEA_TOKEN }}"
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.6.0
+        with:
+          charts_dir: "."
+          config: cr.yaml
+        env:
+          CR_TOKEN: "${{ secrets.GITEA_TOKEN }}"
