@@ -37,7 +37,8 @@ jobs:
             --frontend=dockerfile.v0 \
             --local context=. \
             --local dockerfile=. \
-            --output registry.insecure=true,type=image,name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,push=true
+            --output registry.insecure=true,type=image,name=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest,push=true \
+            --build-arg REPLACE_OLLAMA_IP=${{ env.OLLAMA_IP }}
 
   package-and-push-helm:
     permissions:

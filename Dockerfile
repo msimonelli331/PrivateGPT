@@ -16,6 +16,14 @@ ENV PATH="/root/.local/bin:$PATH"
 
 WORKDIR private-gpt
 
-RUN poetry install --extras "ui llms-llama-cpp embeddings-huggingface vector-stores-qdrant" \
-    && poetry run python scripts/setup
-    
+RUN poetry install --extras "ui vector-stores-qdrant llms-ollama embeddings-ollama"
+
+ARG REPLACE_OLLAMA_IP
+COPY /settings-ollama.yaml /private-gpt/
+RUN sed -i 's/REPLACE_OLLAMA_IP/'${OLLAMA_IP}'/g' /private-gpt/settings-ollama.yaml
+
+COPY /scraper.py /
+RUN python -m ensurepip \
+    && python -m pip install requests bs4
+
+COPY --chmod=755 /docker-entrypoint.sh /

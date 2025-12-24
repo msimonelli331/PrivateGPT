@@ -54,13 +54,17 @@ spec:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          {{- with .Values.volumeMounts }}
+          {{- if .Values.persistentVolume.enabled }}
           volumeMounts:
-            {{- toYaml . | nindent 12 }}
+          - name: {{ .Values.persistentVolume.name }}
+            mountPath: {{ .Values.persistentVolume.mountPath }}
           {{- end }}
       {{- with .Values.volumes }}
+      {{- if .Values.persistentVolume.enabled }}
       volumes:
-        {{- toYaml . | nindent 8 }}
+      - name: {{ .Values.persistentVolume.name }}
+        persistentVolumeClaim:
+          claimName: {{ include "privategpt.fullname" . }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
