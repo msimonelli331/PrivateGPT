@@ -3,6 +3,16 @@ entries:
   privategpt:
   - apiVersion: v2
     appVersion: 0.0.0
+    created: "2025-12-26T21:15:11.645714315Z"
+    description: A Helm chart for Kubernetes
+    digest: 2cafb842a79c7556b03ea76fe78c46d5319e75ccc891265aeabce6a27b8781c3
+    name: privategpt
+    type: application
+    urls:
+    - https://github.com/msimonelli331/PrivateGPT/releases/download/privategpt-0.0.4/privategpt-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: 0.0.0
     created: "2025-12-26T21:04:18.016517733Z"
     description: A Helm chart for Kubernetes
     digest: 2fa738473648b873fd540f2cf99800002c7c69dfd8239ed5dbb3687782dc305d
@@ -31,4 +41,4 @@ entries:
     urls:
     - https://github.com/msimonelli331/PrivateGPT/releases/download/privategpt-0.0.1/privategpt-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-26T21:04:18.016535697Z"
+generated: "2025-12-26T21:15:11.645731457Z"
