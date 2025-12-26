@@ -53,7 +53,7 @@ jobs:
           platforms: ${{ env.PLATFORMS }}
           context: .
           build-args: |
-            REPLACE_OLLAMA_IP=${{ secrets.OLLAMA_IP }}
+            OLLAMA_IP=${{ secrets.OLLAMA_IP }}
 
   package-and-push-helm:
     permissions:

@@ -33,17 +33,25 @@ helm install gpu-operator -n gpu-operator --create-namespace \
     --set-string toolkit.env[3].value=true
 ```
 
-1. Install the helm chart. **Note: If you did not setup a development environment using the link above, or if you changed the container registry name or domain you must edit the values file**
+1. Create the host volume directory
 
-```bash
-kubectl label nodes localhost.localdomain privategpt=local
-```
+   ```bash
+   mkdir -p /mnt/devops/privategpt
+   ```
 
-```bash
-helm repo add ghcr https://msimonelli331.github.io/PrivateGPT
-helm install privategpt ghcr/privategpt --create-namespace -n devops \
--f privategpt-values.yaml
-```
+2. Label the node this local volume is running on
+
+   ```bash
+   kubectl label nodes localhost.localdomain privategpt=local
+   ```
+
+3. Install the helm chart. **Note: If you did not setup a development environment using the link above, or if you changed the container registry name or domain you must edit the values file**
+
+   ```bash
+   helm repo add ghcr https://msimonelli331.github.io/PrivateGPT
+   helm install privategpt ghcr/privategpt --create-namespace -n devops \
+   -f privategpt-values.yaml
+   ```
 
 ## Resources
 

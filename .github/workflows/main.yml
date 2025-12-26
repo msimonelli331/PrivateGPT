@@ -81,7 +81,7 @@ jobs:
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           platforms: ${{ env.PLATFORMS }}
           build-args: |
-            REPLACE_OLLAMA_IP=${{ secrets.OLLAMA_IP }}
+            OLLAMA_IP=${{ secrets.OLLAMA_IP }}
 
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v1
