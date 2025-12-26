@@ -42,8 +42,6 @@ kubectl label nodes localhost.localdomain privategpt=local
 ```bash
 helm repo add ghcr https://msimonelli331.github.io/PrivateGPT
 helm install privategpt ghcr/privategpt --create-namespace -n devops \
---set env[0].name=HF_TOKEN \
---set env[0].value=<your token> \
 -f privategpt-values.yaml
 ```
 
