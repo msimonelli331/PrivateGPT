@@ -59,7 +59,6 @@ spec:
           - name: {{ .Values.persistentVolume.name }}
             mountPath: {{ .Values.persistentVolume.mountPath }}
           {{- end }}
-      {{- with .Values.volumes }}
       {{- if .Values.persistentVolume.enabled }}
       volumes:
       - name: {{ .Values.persistentVolume.name }}
