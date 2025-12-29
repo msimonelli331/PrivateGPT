@@ -28,3 +28,9 @@ vectorstore:
 
 qdrant:
   path: local_data/private_gpt/qdrant
+
+data:
+  local_ingestion:
+    enabled: true
+    allow_ingest_from:
+      - /files/input
