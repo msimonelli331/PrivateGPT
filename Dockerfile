@@ -26,5 +26,6 @@ RUN python -m ensurepip \
 
 COPY --chmod=755 /docker-entrypoint.sh /
 
+ENV PGPT_PROFILES=ollama
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD [ "run" ]
