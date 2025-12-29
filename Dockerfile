@@ -18,9 +18,7 @@ WORKDIR private-gpt
 
 RUN poetry install --extras "ui vector-stores-qdrant llms-ollama embeddings-ollama"
 
-ARG OLLAMA_IP
 COPY /settings-ollama.yaml /private-gpt/
-RUN sed -i 's/REPLACE_OLLAMA_IP/'${OLLAMA_IP}'/g' /private-gpt/settings-ollama.yaml
 
 COPY /scraper.py /
 RUN python -m ensurepip \
