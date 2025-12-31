@@ -14,7 +14,7 @@ env: []
 
 # Use the privateGPTInstance CRD and operator rather than the direct deployment, service, ingress
 privateGPTInstance:
-  enabled: true
+  enabled: false
   ollamaURL: http://localhost:11434
   domain: devops
 
