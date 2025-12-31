@@ -50,8 +50,8 @@ helm install gpu-operator -n gpu-operator --create-namespace \
    **Option 1: Single deployment**
 
    ```bash
-   helm repo add ghcr https://msimonelli331.github.io/PrivateGPT
-   helm install privategpt ghcr/privategpt --create-namespace -n devops \
+   helm repo add privategpt https://msimonelli331.github.io/PrivateGPT
+   helm install privategpt privategpt/privategpt --create-namespace -n devops \
    --set env[0].name=OLLAMA_URL \
    --set env[0].value=http://127.0.0.1:11434 \
    --set privateGPTInstance.enabled=false
@@ -61,8 +61,8 @@ helm install gpu-operator -n gpu-operator --create-namespace \
    **Option 2: Multi deployment via operator**
 
    ```bash
-   helm repo add ghcr https://msimonelli331.github.io/PrivateGPT
-   helm install privategpt ghcr/privategpt --create-namespace -n devops \
+   helm repo add privategpt https://msimonelli331.github.io/PrivateGPT
+   helm install privategpt privategpt/privategpt --create-namespace -n devops \
    --set privateGPTInstance.ollamaURL=http://127.0.0.1:11434 \
    -f privategpt-values.yaml
    ```

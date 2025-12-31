@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if [ "$1" = 'run' ]; then
+    ln -s $(pwd)/configs/* $(pwd)/
     if [ ! -z $2 ]; then
         folder=$2
         if [ -d "/files/input/${folder}" ]; then

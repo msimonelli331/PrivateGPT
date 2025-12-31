@@ -112,7 +112,7 @@ persistentVolume:
 configMap:
   enabled: true
   name: settings
-  mountPath: /private-gpt
+  mountPath: /private-gpt/configs
 
 nodeSelector: {}
 
