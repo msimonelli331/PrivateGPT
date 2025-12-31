@@ -47,11 +47,23 @@ helm install gpu-operator -n gpu-operator --create-namespace \
 
 3. Install the helm chart. **Note: If you did not setup a development environment using the link above, or if you changed the container registry name or domain you must edit the values file**
 
+   **Option 1: Single deployment**
+
    ```bash
    helm repo add ghcr https://msimonelli331.github.io/PrivateGPT
    helm install privategpt ghcr/privategpt --create-namespace -n devops \
    --set env[0].name=OLLAMA_URL \
    --set env[0].value=http://127.0.0.1:11434 \
+   --set privateGPTInstance.enabled=false
+   -f privategpt-values.yaml
+   ```
+
+   **Option 2: Multi deployment via operator**
+
+   ```bash
+   helm repo add ghcr https://msimonelli331.github.io/PrivateGPT
+   helm install privategpt ghcr/privategpt --create-namespace -n devops \
+   --set privateGPTInstance.ollamaURL=http://127.0.0.1:11434 \
    -f privategpt-values.yaml
    ```
 

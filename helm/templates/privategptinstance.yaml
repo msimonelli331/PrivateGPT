@@ -1,0 +1,10 @@
+{{- if .Values.privateGPTInstance.enabled -}}
+apiVersion: privategpt.eirl/v1alpha1
+kind: PrivateGPTInstance
+metadata:
+  name: default
+spec:
+  ollamaURL: {{ .Values.privateGPTInstance.ollamaURL }}
+  image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+  domain: {{ .Values.privateGPTInstance.domain }}
+{{- end }}

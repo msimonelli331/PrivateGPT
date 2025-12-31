@@ -12,13 +12,18 @@ image:
 
 env: []
 
+# Use the privateGPTInstance CRD and operator rather than the direct deployment, service, ingress
+privateGPTInstance:
+  enabled: true
+  ollamaURL: http://localhost:11434
+  domain: devops
+
 # command:
 #   - tail
 #   - -f
 #   - /dev/null
 
-imagePullSecrets:
-  - name: regcred-ghcr
+imagePullSecrets: {}
 nameOverride: ""
 fullnameOverride: ""
 
