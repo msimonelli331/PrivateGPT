@@ -14,11 +14,9 @@ RUN apt-get update \
 
 ENV PATH="/root/.local/bin:$PATH"
 
-WORKDIR private-gpt
+WORKDIR /private-gpt
 
-RUN poetry install --extras "ui vector-stores-qdrant llms-ollama embeddings-ollama"
-
-COPY /settings-ollama.yaml /private-gpt/
+RUN poetry install --extras "vector-stores-qdrant llms-ollama embeddings-ollama"
 
 COPY /scraper.py /
 RUN python -m ensurepip \

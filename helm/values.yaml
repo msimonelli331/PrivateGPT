@@ -104,6 +104,11 @@ persistentVolume:
   hostPath: /mnt/devops/privategpt
   mountPath: /files
 
+configMap:
+  enabled: true
+  name: settings
+  mountPath: /private-gpt
+
 nodeSelector: {}
 
 tolerations: []

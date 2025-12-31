@@ -50,8 +50,8 @@ helm install gpu-operator -n gpu-operator --create-namespace \
    ```bash
    helm repo add ghcr https://msimonelli331.github.io/PrivateGPT
    helm install privategpt ghcr/privategpt --create-namespace -n devops \
-   --set env[0].name=OLLAMA_IP \
-   --set env[0].value=127.0.0.1 \
+   --set env[0].name=OLLAMA_URL \
+   --set env[0].value=http://127.0.0.1:11434 \
    -f privategpt-values.yaml
    ```
 
