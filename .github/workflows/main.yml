@@ -108,6 +108,10 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
+      - name: Add dependencies
+        run: |
+          helm repo add privategpt-operator https://msimonelli331.github.io/privategpt-operator
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
         with:

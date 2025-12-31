@@ -1,0 +1,6 @@
+dependencies:
+- name: privategpt-operator
+  repository: https://msimonelli331.github.io/privategpt-operator
+  version: 0.1.5
+digest: sha256:c04a5aa978322179bdada2f75ddf6fffc26e6e94133b42b80cbb25378c4d0c23
+generated: "2025-12-31T23:23:31.828776793Z"
