@@ -1,7 +1,12 @@
 #!/bin/bash
 
 if [ "$1" = 'run' ]; then
-    ln -s $(pwd)/configs/* $(pwd)/
+    if [ -d "$(pwd)/configs" ]; then
+        for file in "$(pwd)/configs/"*; do
+            rm -f "$(pwd)/$(basename $file)"
+        done
+        ln -s "$(pwd)/configs/"* "$(pwd)/"
+    fi
     if [ ! -z $2 ]; then
         folder=$2
         if [ -d "/files/input/${folder}" ]; then

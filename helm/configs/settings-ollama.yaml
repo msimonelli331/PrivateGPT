@@ -34,3 +34,6 @@ data:
     enabled: true
     allow_ingest_from:
       - /files/input
+
+ui:
+  enabled: false
