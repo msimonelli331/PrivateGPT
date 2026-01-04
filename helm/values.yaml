@@ -18,12 +18,7 @@ privateGPTInstance:
   ollamaURL: http://localhost:11434
   domain: devops
 
-# command:
-#   - tail
-#   - -f
-#   - /dev/null
-
-imagePullSecrets: {}
+imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
@@ -63,16 +58,14 @@ ingress:
   className: ""
   annotations:
     cert-manager.io/issuer: ca-issuer
-    cert-manager.io/common-name: privategpt.devops
+    cert-manager.io/common-name: backend.pgpt.devops
   hosts:
-    - host: privategpt.devops
-      paths:
-        - path: /
-          pathType: Prefix
+    - host: backend.pgpt.devops
+      paths: []
   tls:
-    - secretName: privategpt
+    - secretName: backend-pgpt
       hosts:
-        - privategpt.devops
+        - backend.pgpt.devops
 
 resources:
   {}

@@ -111,6 +111,7 @@ jobs:
       - name: Add dependencies
         run: |
           helm repo add privategpt-operator https://msimonelli331.github.io/privategpt-operator
+          helm repo add privategpt-react https://msimonelli331.github.io/privategpt-react
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.6.0
