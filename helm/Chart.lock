@@ -1,9 +1,9 @@
 dependencies:
 - name: privategpt-operator
   repository: https://msimonelli331.github.io/privategpt-operator
-  version: 0.1.5
+  version: 0.1.6
 - name: privategpt-react
   repository: https://msimonelli331.github.io/privategpt-react
   version: 0.1.4
-digest: sha256:b7d7090abb0a600ed4b9158dc635bd7d68dc48fdcd35b396bf4761cc38d9dee3
-generated: "2026-01-04T19:48:13.261419534Z"
+digest: sha256:399bd58d641d7aac3deb305890ac73c8f6ba71ae239491ad45bda10d660ca4e3
+generated: "2026-02-07T20:23:25.736320009Z"
